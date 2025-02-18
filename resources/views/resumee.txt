@@ -1,0 +1,2 @@
+pour créer un controller => `php artisan make:controller ControllerName`
+formation_laravel_dev201_NomPrenom => nom de repos
