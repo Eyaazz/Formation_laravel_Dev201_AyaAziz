@@ -23,6 +23,10 @@ Route::get('/posts/{id}' ,  function($id) {
 Route::get('/posts/{id}/{post}' ,  function($id,$post) {
     return "$id $post"; }); 
 
+Route::get('/layout',function(){
+    return view('layout');
+});
+
 Route::get('/show', function () {
     $posts = [
         1 => ['title' => 'Laravel'],
@@ -32,9 +36,13 @@ Route::get('/show', function () {
     return view('posts.show', ['data' => $posts]); 
 });
 
+
 Route::get('/home', [HomeController::class, 'home'])->name('home');
 
+Route::get('/show',[HomeCOntroller::class, 'blog'])->name('blog');
 
+
+Route::get('/show/{id}/{book?}', [HomeController::class, 'blog'])->name('blog');
 
 
 

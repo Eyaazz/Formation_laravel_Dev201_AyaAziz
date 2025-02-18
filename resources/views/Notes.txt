@@ -1,0 +1,6 @@
+pour créer un controller => `php artisan make:controller ControllerName`
+formation_laravel_dev201_NomPrenom => nom de repos
+php artisan migrate 
+recherche => quelles sont les diff maniéres pour créer les migrations au nv de laravel 
++ les diff manières pour créer table users au nv de laravel + comment ajouter des colonnes 
+fichier excel => lien de repos de github 
