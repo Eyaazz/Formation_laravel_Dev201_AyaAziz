@@ -4,3 +4,60 @@ php artisan migrate
 recherche => quelles sont les diff maniéres pour créer les migrations au nv de laravel 
 + les diff manières pour créer table users au nv de laravel + comment ajouter des colonnes 
 fichier excel => lien de repos de github 
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+=> Une migration dans Laravel est un système de gestion de version de votre base de données.
+    Elle permet de définir et de modifier la structure de votre BDD (tables, colonnes, relations, etc.)
+    de manière programmatique, en utilisant du code PHP 
+    plutôt que des requêtes SQL brutes ou des outils graphiques (comme phpMyAdmin).
+
+=>  php artisan make:migration create_users_table (Génère un fichier vide dans database/migrations/.)
+=>  php artisan make:migration create_users_table --create=users  (Spécifier le nom de la table Laravel génère automatiquement le code de base pour la table users.)
+=>  php artisan make:model User -m (Crée le modèle User et une migration associée nommée create_users_table.model=>
+        communique avec la BD)
+
+=> Créer la table users
+
+    Exemple de code généré dans la migration (up method) :
+
+    Schema::create('users', function (Blueprint $table) {
+        $table->id();
+        $table->string('name');
+        $table->string('email')->unique();
+        $table->timestamp('email_verified_at')->nullable();
+        $table->string('password');
+        $table->rememberToken();
+        $table->timestamps(); // created_at et updated_at
+    });
+
+=> Ajoutez des colonnes directement dans la migration initiale :
+
+    $table->string('username')->unique();
+    $table->boolean('is_admin')->default(false);
+
+=>Créer une nouvelle migration
+    php artisan make:migration add_age_to_users_table --table=users
+
+=> Modifier la migration générée
+Dans la méthode up :
+    Schema::table('users', function (Blueprint $table) {
+    $table->integer('age')->nullable()->after('email');
+    $table->string('address')->nullable();
+    });
+
+=>Dans la méthode down (pour annuler) :
+     Schema::table('users', function (Blueprint $table) {
+    $table->dropColumn(['age', 'address']);
+    });
+
+=>Exécuter les migrations:
+    php artisan migrate
+
+=>Annuler la dernière migration :
+    php artisan migrate:rollback
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+table post + env formulaire
